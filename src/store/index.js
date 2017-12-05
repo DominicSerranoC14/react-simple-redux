@@ -1,5 +1,3 @@
-'use strict';
-
 import { createStore, combineReducers } from 'redux';
 
 const visibilityReducer = (state = 'SHOW_ALL', action) => {
@@ -20,7 +18,7 @@ const todosReducer = (state = [], action) => {
             return state.map(todo => todoReducer(todo, action));
         default:
             return state;  
-    };
+    }
 };
 
 const todoReducer = (state, action) => {
@@ -47,7 +45,7 @@ const toggleTodo = (state, { completed, id }) => {
 
 const todoApp = combineReducers({ todosReducer, visibilityReducer });
 
-const store = createStore(todoApp);
+const store = createStore(todoApp, {}, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 console.log(store.getState());
 
